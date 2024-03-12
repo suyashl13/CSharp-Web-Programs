@@ -26,7 +26,12 @@ public class HomeController : Controller
 
     [Route("/download")]
     public VirtualFileResult FileDownload() {
-        return new VirtualFileResult("/wwwroot/Sample.txt", "text/plain");
+        return new VirtualFileResult("/wwwroot/sample.pdf", "text/plain");
+    }
+
+    [Route("/download2")]
+    public PhysicalFileResult DownloadFile() {
+        return PhysicalFile(@"D:\Practice-Worspace\CSharp-Web-Programs\04-Controller-And-IActionResult\Controller-Demo\wwwroot\Sample.txt", "application/pdf");
     }
 
 }
