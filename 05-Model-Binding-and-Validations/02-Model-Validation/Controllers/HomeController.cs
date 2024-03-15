@@ -4,10 +4,7 @@ public class HomeController : Controller
 {
     [HttpPost]
     [Route("/person")]
-    public IActionResult RegisterPerson([Bind([
-        nameof(Person.Name), nameof(Person.Email),
-     nameof(Person.Password), nameof(Person.Phone),
-     nameof(Person.PersonId)])] Person person)
+    public IActionResult RegisterPerson([ModelBinder(BinderType = typeof(CustomPersonBinder))] Person person)
     {
         person.PersonId = Guid.NewGuid();
 
