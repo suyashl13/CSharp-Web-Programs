@@ -1,12 +1,13 @@
 namespace CRUDTests;
 using ServiceContracts;
-using Entities;
 using ServiceContracts.DTO;
 using Services;
 
 public class CountryServiceTest
 {
-    private ICountryServices _countryService;
+    #pragma warning disable CA1859 // Use concrete types when possible for improved performance
+    private readonly ICountryServices _countryService;
+    #pragma warning restore CA1859 // Use concrete types when possible for improved performance
 
     public CountryServiceTest()
     {
@@ -68,7 +69,7 @@ public class CountryServiceTest
     public void GetCountryByCountryId_NullCountryId()
     {
         Guid? countryId = null;
-        
+
         // Act
         CountryResponse? countryResponse = _countryService.GetCountryByCountryId(countryId);
         _countryService.GetCountryByCountryId(countryId);
@@ -78,9 +79,9 @@ public class CountryServiceTest
 
 
     [Fact]
-    public void GetCountryByCountryId_ValidCountryId() 
+    public void GetCountryByCountryId_ValidCountryId()
     {
-        CountryAddRequest? countryAddRequest = new CountryAddRequest() { CountryName= "China" };
+        CountryAddRequest? countryAddRequest = new() { CountryName = "China" };
 
         // Act
         CountryResponse? countryResponse = _countryService.AddCountry(countryAddRequest);
